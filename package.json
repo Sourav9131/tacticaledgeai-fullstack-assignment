@@ -1,8 +1,8 @@
 {
-  "name": "movie-database-backend",
+  "name": "cinema-hub-backend",
   "version": "1.0.0",
-  "description": "NestJS Backend for Movie Database Application",
-  "author": "Your Name",
+  "description": "Backend API built with NestJS for managing and serving movie-related data with authentication",
+  "author": "Sourav Argade <sourav.argade.dev@gmail.com",
   "private": true,
   "license": "MIT",
   "scripts": {

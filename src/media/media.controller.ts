@@ -10,10 +10,10 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { MoviesService } from './movies.service';
-import { CreateMovieDto } from './dto/create-movie.dto';
-import { UpdateMovieDto } from './dto/update-movie.dto';
-import { QueryMovieDto } from './dto/query-movie.dto';
+import { MediaService } from './media.service';
+import { CreateMediaDto } from './dto/create-media.dto';
+import { UpdateMediaDto } from './dto/update-media.dto';
+import { QueryMediaDto } from './dto/query-media.dto';
 import { JwtAuthGuard } from '../auth/guards/guards.guard';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 
@@ -21,20 +21,20 @@ import { CurrentUser } from '../common/decorators/current-user.decorator';
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @Controller('movies')
-export class MoviesController {
-  constructor(private readonly moviesService: MoviesService) {}
+export class MediaController {
+  constructor(private readonly moviesService: MediaService) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a new movie' })
   @ApiResponse({ status: 201, description: 'Movie successfully created' })
   @ApiResponse({ status: 400, description: 'Bad request' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  create(@Body() createMovieDto: CreateMovieDto, @CurrentUser() user: any) {
+  create(@Body() createMovieDto: CreateMediaDto, @CurrentUser() user: any) {
     try {
     return this.moviesService.create(createMovieDto, user.userId);
     
     } catch (error) {
-      console.log(error,"from error")
+      console.log(error,"error")
     }
 
   }
@@ -43,8 +43,7 @@ export class MoviesController {
   @ApiOperation({ summary: 'Get all movies with pagination' })
   @ApiResponse({ status: 200, description: 'Movies successfully retrieved' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  findAll(@Query() queryDto: QueryMovieDto, @CurrentUser() user: any) {
-    console.log('Current User:', user);
+  findAll(@Query() queryDto: QueryMediaDto, @CurrentUser() user: any) {
     return this.moviesService.findAll(queryDto, user.userId);
   }
 
@@ -69,8 +68,6 @@ export class MoviesController {
     @CurrentUser() user: any,
   ) {
 
-    console.log('Update Movie DTO:', updateMovieDto);
-    console.log('Current User:', user);
     return this.moviesService.update(id, updateMovieDto, user.userId);
   }
 

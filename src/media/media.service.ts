@@ -1,19 +1,19 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { Movie, MovieDocument } from './schemas/movie.schema';
-import { CreateMovieDto } from './dto/create-movie.dto';
-import { UpdateMovieDto } from './dto/update-movie.dto';
-import { QueryMovieDto } from './dto/query-movie.dto';
+import { Media, MediaDocument } from './schemas/media.schema';
+import { CreateMediaDto } from './dto/create-media.dto';
+import { UpdateMediaDto } from './dto/update-media.dto';
+import { QueryMediaDto } from './dto/query-media.dto';
 
 @Injectable()
-export class MoviesService {
+export class MediaService {
   constructor(
-    @InjectModel(Movie.name) private readonly movieModel: Model<MovieDocument>,
+    @InjectModel(Media.name) private readonly movieModel: Model<MediaDocument>,
   ) {}
 
   // Create a new movie
-  async create(createMovieDto: CreateMovieDto, userId: string): Promise<MovieDocument> {
+  async create(createMovieDto: CreateMediaDto, userId: string): Promise<MediaDocument> {
     const newMovie = new this.movieModel({
       ...createMovieDto,
       userId,
@@ -22,7 +22,7 @@ export class MoviesService {
   }
 
   // Get all movies with pagination, search, and sorting
-  async findAll(queryDto: QueryMovieDto, userId: string) {
+  async findAll(queryDto: QueryMediaDto, userId: string) {
     const {
       page = 1,
       limit = 10,
@@ -65,7 +65,7 @@ export class MoviesService {
   }
 
   // Find a movie by ID and check ownership
-  async findOne(id: string, userId: string): Promise<MovieDocument> {
+  async findOne(id: string, userId: string): Promise<MediaDocument> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundException(`Invalid movie ID: ${id}`);
     }
@@ -84,7 +84,7 @@ export class MoviesService {
   }
 
   // Update a movie
-  async update(id: string, updateMovieDto: UpdateMovieDto, userId: string): Promise<MovieDocument> {
+  async update(id: string, updateMovieDto: UpdateMediaDto, userId: string): Promise<MediaDocument> {
     const movie = await this.findOne(id, userId);
 
     Object.assign(movie, updateMovieDto); // merge updates

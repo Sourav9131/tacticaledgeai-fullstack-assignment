@@ -2,7 +2,7 @@ import { IsOptional, IsInt, Min, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
-export class QueryMovieDto {
+export class QueryMediaDto {
   @ApiPropertyOptional({
     description: 'Page number',
     minimum: 1,

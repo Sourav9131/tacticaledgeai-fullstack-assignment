@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type MovieDocument = Movie & Document;
+export type MediaDocument = Media & Document;
 
 @Schema({ timestamps: true })
-export class Movie {
+export class Media {
   @Prop({ required: true, trim: true })
   title: string;
 
@@ -21,8 +21,8 @@ export class Movie {
   updatedAt?: Date;
 }
 
-export const MovieSchema = SchemaFactory.createForClass(Movie);
+export const MediaSchema = SchemaFactory.createForClass(Media);
 
 // Indexes for better query performance
-MovieSchema.index({ userId: 1, createdAt: -1 });
-MovieSchema.index({ title: 'text' });
+MediaSchema.index({ userId: 1, createdAt: -1 });
+MediaSchema.index({ title: 'text' });

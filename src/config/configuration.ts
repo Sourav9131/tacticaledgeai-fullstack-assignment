@@ -4,7 +4,7 @@ export default () => ({
     uri: process.env.MONGODB_URI ,
   },
   jwt: {
-    secret: process.env.JWT_SECRET || 'super-secret-key',
+    secret: process.env.JWT_SECRET || 'dev_media_backend_secret_2026',
     expiresIn: process.env.JWT_EXPIRATION || '7d',
   },
   upload: {

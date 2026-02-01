@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import configuration from './config/configuration';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { MoviesModule } from './movies/movies.module';
+import { MediaModule } from './media/media.module';
 import { UploadModule } from './upload/upload.module';
 
 @Module({
@@ -17,7 +17,7 @@ import { UploadModule } from './upload/upload.module';
     MongooseModule.forRoot(process.env.MONGODB_URI),
     AuthModule,
     UsersModule,
-    MoviesModule,
+    MediaModule,
     UploadModule,
   ],
 })

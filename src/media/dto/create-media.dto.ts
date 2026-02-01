@@ -2,7 +2,7 @@ import { IsNotEmpty, IsString, IsNumber, Min, Max, IsUrl } from 'class-validator
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 
-export class CreateMovieDto {
+export class CreateMediaDto{
   @ApiProperty({
     example: 'The Shawshank Redemption',
     description: 'Movie title',
